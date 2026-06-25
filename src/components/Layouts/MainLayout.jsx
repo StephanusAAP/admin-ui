@@ -6,7 +6,7 @@ import Icon from "../Elements/Icon";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/themeContext";
 import { AuthContext } from "../../context/authContext";
-import { logoutService } from "../../service/authService";
+import { logoutService } from "../../Service/authService";
 
 function MainLayout(props) {
   const { children } = props;
