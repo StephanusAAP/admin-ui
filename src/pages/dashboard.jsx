@@ -14,7 +14,7 @@ import {
   goals,
   expensesStatistics,
 } from "../data";
-import { goalService } from "../Service/dataService";
+import { goalService } from "../service/dataService";
 import { AuthContext } from "../context/authContext";
 
 function Dashboard() {
