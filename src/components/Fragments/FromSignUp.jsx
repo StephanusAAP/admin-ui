@@ -1,10 +1,9 @@
 import React from "react";
 import LabeledInput from "../Elements/LabeledInput";
-import CheckBox from "../Elements/CheckBox";
 import Button from "../Elements/Button";
 import { Link } from "react-router-dom";
 
-function FormSignIn() {
+function FormSignUp() {
   return (
     <>
       {/* form start */}
@@ -12,10 +11,19 @@ function FormSignIn() {
         <form action="">
           <div className="mb-6">
             <LabeledInput
+              label="Name"
+              id="name"
+              type="text"
+              placeholder="user"
+              name="name"
+            />
+          </div>
+          <div className="mb-6">
+            <LabeledInput
               label="Email Address"
               id="email"
               type="email"
-              placeholder="hello@example"
+              placeholder="hello@example.com"
               name="email"
             />
           </div>
@@ -28,22 +36,22 @@ function FormSignIn() {
               name="password"
             />
           </div>
-          <div className="mb-3">
-            <CheckBox
-              label="Keep me signed in"
-              id="status"
-              type="checkbox"
-              name="status"
-            />
+          <div className="my-2 text-gray-03 flex items-center gap-1">
+            <span>By continuing, you agree to our</span>
+            <Link to="/login" className="text-primary text-sm">
+              terms of service
+            </Link>
           </div>
-          <Button>Login</Button>
+          <Button>Sign Up</Button>
         </form>
       </div>
       {/* form end */}
       {/* teks start */}
-      <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
-        <div className="border border-gray-05 w-full"></div>
-        <div className=" px-2 bg-special-mainBg absolute"> or sign in with</div>
+      <div className="relative my-9 text-xs text-gray-03">
+        <div className="border-t border-gray-05"></div>
+        <div className="absolute left-1/2 -translate-x-1/2 -top-2 px-2 bg-special-mainBg">
+          or sign up with
+        </div>
       </div>
       {/* teks end */}
       {/* sign in with google start */}
@@ -80,9 +88,10 @@ function FormSignIn() {
       </div>
       {/* sign in with google end */}
       {/* link start */}
-      <div className="flex justify-center">
+      <div className="flex justify-center text-gray-03 gap-1">
+        <span>Already have an account?</span>
         <Link to="/login" className="text-primary text-sm font-bold">
-          Sign In Here
+          Sign in here
         </Link>
       </div>
       {/* link end */}
@@ -90,4 +99,4 @@ function FormSignIn() {
   );
 }
 
-export default FormSignIn;
+export default FormSignUp;

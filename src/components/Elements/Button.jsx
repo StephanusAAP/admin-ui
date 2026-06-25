@@ -1,7 +1,7 @@
 import React from "react";
 
-function Button(props) {
-  const { children, type = "submit", variant = "primary" } = props;
+function Button(Props) {
+  const { children, type = "submit", variant = "primary" } = Props;
 
   const baseClasses = "h-12 rounded-md text-sm w-full";
   const variantClasses = {

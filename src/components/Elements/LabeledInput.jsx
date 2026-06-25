@@ -1,8 +1,8 @@
 import React from "react";
 import Input from "./Input";
 
-function LabeledInput(props) {
-  const { label, id, ...rest } = props;
+function LabeledInput(Props) {
+  const { label, id, ...rest } = Props;
 
   return (
     <>
