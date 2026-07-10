@@ -8,18 +8,18 @@ import CardStatistic from "../components/Fragments/CardStatistic";
 import CardExpensesBreakdown from "../components/Fragments/CardExpensesBreakdown";
 import {
   transactions,
-  bills,
   expensesBreakdowns,
   balances,
-  goals,
   expensesStatistics,
 } from "../data";
 import { goalService } from "../Service/dataService";
 import { AuthContext } from "../context/authContext";
 import AppSnackbar from "../components/Elements/AppSnackbar";
+import axios from "axios"; 
 
 function Dashboard() {
   const [goals, setGoals] = useState({});
+  const [upcomingBills, setUpcomingBills] = useState([]); 
   const { logout } = useContext(AuthContext);
 
   const [snackbar, setSnackbar] = useState({
@@ -47,9 +47,26 @@ function Dashboard() {
       }
     }
   };
+  const fetchUpcomingBills = async () => {
+    try {
+      const token = localStorage.getItem("token"); 
+      const response = await axios.get("https://jwt-auth-eight-neon.vercel.app/bills", {
+        headers: {
+          Authorization: `Bearer ${token}`, 
+        },
+      });
+      setUpcomingBills(response.data.data || response.data);
+    } catch (err) {
+      console.error("Gagal memuat data bills:", err);
+      if (err.response && err.response.status === 401) {
+        logout();
+      }
+    }
+  };
 
   useEffect(() => {
     fetchGoals();
+    fetchUpcomingBills(); 
   }, []);
 
   return (
@@ -63,7 +80,7 @@ function Dashboard() {
             <CardGoal data={goals} />
           </div>
           <div className="sm:col-span-4">
-            <CardUpcomingBill data={bills} />
+            <CardUpcomingBill data={upcomingBills} />
           </div>
           <div className="sm:col-span-4 sm:row-span-2">
             <CardRecentTransaction data={transactions} />
